@@ -44,7 +44,7 @@
                 <table>
                     <tr>
                         <td>Supplier</td>
-                        <td>: {{ $supplier->nama }}</td>
+                        <td>: {{ $supplier->nama_supplier }}</td>
                     </tr>
                     <tr>
                         <td>Telepon</td>
@@ -215,7 +215,7 @@
     }
 
     function hideBarang() {
-        $('#modal-Barang').modal('hide');
+        $('#modal-barang').modal('hide');
     }
 
     function pilihBarang(id, kode) {

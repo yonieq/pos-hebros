@@ -5,6 +5,7 @@ use App\Http\Controllers\{
     KategoriController,
     LaporanController,
     BarangController,
+    MidtransController,
     PelangganController,
     PengeluaranController,
     PembelianController,
@@ -53,6 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/pengeluaran/data', [PengeluaranController::class, 'data'])->name('pengeluaran.data');
         Route::resource('/pengeluaran', PengeluaranController::class);
+        Route::get('/pengeluaran/export-excel', [PengeluaranController::class, 'exportExcel']);
+        Route::get('/pengeluaran/export-csv', [PengeluaranController::class, 'exportCSV'])->name('exportcsv');
 
         Route::get('/pembelian/data', [PembelianController::class, 'data'])->name('pembelian.data');
         Route::get('/pembelian/{id}/create', [PembelianController::class, 'create'])->name('pembelian.create');

@@ -22,7 +22,7 @@ class PenjualanDetailController extends Controller
             $penjualan = Penjualan::find($id_penjualan);
             $pelangganSelected = $penjualan->pelanggan ?? new Pelanggan();
 
-            return view('penjualan_detail.index', compact('barang', 'pelanggan', 'diskon', 'id_penjualan', 'penjualan', 'pelangganSelected'));
+            return view('penjualan_detail.index', compact('barang', 'pelanggan', 'diskon' , 'id_penjualan', 'penjualan', 'pelangganSelected'));
         } else {
             if (auth()->user()->level == 1) {
                 return redirect()->route('transaksi.baru');
@@ -49,6 +49,7 @@ class PenjualanDetailController extends Controller
             $row['harga_jual']  = 'Rp. '. format_uang($item->harga_jual);
             $row['jumlah']      = '<input type="number" class="form-control input-sm quantity" data-id="'. $item->id_penjualan_detail .'" value="'. $item->jumlah .'">';
             $row['diskon']      = $item->diskon . '%';
+            // $row['pajak']      = $item->pajak . '%';
             $row['subtotal']    = 'Rp. '. format_uang($item->subtotal);
             $row['aksi']        = '<div class="btn-group">
                                     <button onclick="deleteData(`'. route('transaksi.destroy', $item->id_penjualan_detail) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
@@ -66,6 +67,7 @@ class PenjualanDetailController extends Controller
             'harga_jual'  => '',
             'jumlah'      => '',
             'diskon'      => '',
+            'pajak'       => '',
             'subtotal'    => '',
             'aksi'        => '',
         ];
@@ -90,6 +92,7 @@ class PenjualanDetailController extends Controller
         $detail->harga_jual = $barang->harga_jual;
         $detail->jumlah = 1;
         $detail->diskon = $barang->diskon;
+        // $detail->pajak = $barang->pajak;
         $detail->subtotal = $barang->harga_jual - ($barang->diskon / 100 * $barang->harga_jual);;
         $detail->save();
 

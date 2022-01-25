@@ -15,12 +15,17 @@ class BuatPenjualanDetailTable extends Migration
     {
         Schema::create('penjualan_detail', function (Blueprint $table) {
             $table->increments('id_penjualan_detail');
+            $table->string('faktur')->nullable();
             $table->integer('id_penjualan');
             $table->integer('id_barang');
             $table->integer('harga_jual');
             $table->integer('jumlah');
             $table->tinyInteger('diskon')->default(0);
+            $table->tinyInteger('pajak')->default(0.1)->nullable();
             $table->integer('subtotal');
+            $table->enum('payment_status', ['1', '2', '3', '4'])->comment('1=menunggu pembayaran, 2=sudah dibayar, 3=kadaluarsa, 4=batal');
+            $table->string('snap_token', 36)->nullable();
+            $table->string('status', 36)->default('TUNAI');
             $table->timestamps();
         });
     }

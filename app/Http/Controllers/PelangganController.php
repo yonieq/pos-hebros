@@ -6,6 +6,7 @@ use App\Models\Pelanggan;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use PDF;
+use Alert;
 
 class PelangganController extends Controller
 {
@@ -74,7 +75,7 @@ class PelangganController extends Controller
         $pelanggan->alamat = $request->alamat;
         $pelanggan->save();
 
-        return response()->json('Data berhasil disimpan', 200);
+        return redirect()->back();
     }
 
     /**

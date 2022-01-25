@@ -36,7 +36,7 @@
                                 alt="User Image">
 
                             <p>
-                                {{ auth()->user()->name }} - {{ auth()->user()->email }}
+                                {{ auth()->user()->email }}
                             </p>
                         </li>
                         <!-- Menu Footer-->

@@ -19,7 +19,7 @@
                         @foreach ($supplier as $key => $item)
                             <tr>
                                 <td width="5%">{{ $key+1 }}</td>
-                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->nama_supplier }}</td>
                                 <td>{{ $item->telepon }}</td>
                                 <td>{{ $item->alamat }}</td>
                                 <td>

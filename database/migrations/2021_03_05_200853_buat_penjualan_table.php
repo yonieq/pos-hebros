@@ -19,11 +19,11 @@ class BuatPenjualanTable extends Migration
             $table->integer('total_item');
             $table->integer('total_harga');
             $table->tinyInteger('diskon')->default(0);
+            $table->tinyInteger('pajak')->default(0.1)->nullable();
             $table->integer('bayar')->default(0);
             $table->integer('diterima')->default(0);
-            $table->enum('payment_status', ['1', '2', '3', '4'])->comment('1=menunggu pembayaran, 2=sudah dibayar, 3=kadaluarsa, 4=batal');
-            $table->string('snap_token', 36)->nullable();
             $table->integer('id_user');
+            $table->string('status')->default('TUNAI');
             $table->timestamps();
         });
     }

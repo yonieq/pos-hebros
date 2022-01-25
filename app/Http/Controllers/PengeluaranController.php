@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengeluaran;
+use App\Exports\PengeluaranExport;
+use Excel;
 
 class PengeluaranController extends Controller
 {
@@ -109,5 +111,17 @@ class PengeluaranController extends Controller
         $pengeluaran = Pengeluaran::find($id)->delete();
 
         return response(null, 204);
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new PengeluaranExport, 'pengeluaranlist.xlsx');
+    }
+
+    public function exportCSV()
+    {
+        $test = Pengeluaran::all();
+        dd($test);
+        // return Excel::download(new PengeluaranExport, 'pengeluaranlist.csv');
     }
 }

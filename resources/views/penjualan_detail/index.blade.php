@@ -58,7 +58,6 @@
                         </div>
                     </div>
                 </form>
-
                 <table class="table table-stiped table-bordered table-penjualan">
                     <thead>
                         <th width="5%">No</th>
@@ -109,6 +108,22 @@
                                     <input type="number" name="diskon" id="diskon" class="form-control" 
                                         value="{{ ! empty($pelangganSelected->id_pelanggan) ? $diskon : 0 }}" 
                                         readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="pajak" class="col-lg-2 control-label">Pajak</label>
+                                <div class="col-lg-8">
+                                    <input type="number" id="pajak" class="form-control" name="pajak" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="status" class="col-lg-2 control-label">Pembayaran</label>
+                                <div class="col-lg-8">
+                                    <select name="status" id="status" class="form-control">
+                                    <option value="">Pilih Satuan</option>
+                                    <option selected value="TUNAI">TUNAI</option>
+                                    <option value="MIDTRANS">MIDTRANS</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -167,6 +182,7 @@
                 {data: 'harga_jual'},
                 {data: 'jumlah'},
                 {data: 'diskon'},
+                // {data: 'pajak'},
                 {data: 'subtotal'},
                 {data: 'aksi', searchable: false, sortable: false},
             ],
@@ -217,9 +233,17 @@
             if ($(this).val() == "") {
                 $(this).val(0).select();
             }
-
+            
             loadForm($(this).val());
         });
+
+        // $(document).on('input', '#pajak', function () {
+        //     if ($(this).val() == "") {
+        //         $(this).val(0).select();
+        //     }
+
+        //     loadForm($(this).val());
+        // });
 
         $('#diterima').on('input', function () {
             if ($(this).val() == "") {

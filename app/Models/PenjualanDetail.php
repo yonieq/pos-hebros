@@ -12,6 +12,7 @@ class PenjualanDetail extends Model
     protected $table = 'penjualan_detail';
     protected $primaryKey = 'id_penjualan_detail';
     protected $guarded = [];
+    protected $fillable  = ['snap_token'];
 
     public function barang()
     {

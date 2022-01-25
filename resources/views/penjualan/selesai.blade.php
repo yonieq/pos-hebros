@@ -25,14 +25,15 @@
                 @else
                 <button class="btn btn-warning btn-flat" onclick="notaBesar('{{ route('transaksi.nota_besar') }}', 'Nota PDF')">Cetak Ulang Nota</button>
                 @endif
+                <a id="midtrans" class="btn btn-primary btn-flat">Bayar Pakai Midtrans</a>
                 <a href="{{ route('transaksi.baru') }}" class="btn btn-primary btn-flat">Transaksi Baru</a>
             </div>
         </div>
     </div>
 </div>
 @endsection
-
 @push('scripts')
+@foreach($snapToken as $s)
 <script>
     // tambahkan untuk delete cookie innerHeight terlebih dahulu
     document.cookie = "innerHeight=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -68,4 +69,32 @@
         if (window.focus) newWindow.focus();
     }
 </script>
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+<script>
+    const payButton = document.querySelector('#midtrans');
+    payButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        snap.pay('{{ $s -> snap_token }}', {
+            // Optional
+            onSuccess: function(result) {
+                /* You may add your own js here, this is just example */
+                // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                console.log(result)
+            },
+            // Optional
+            onPending: function(result) {
+                /* You may add your own js here, this is just example */
+                // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                console.log(result)
+            },
+            // Optional
+            onError: function(result) {
+                /* You may add your own js here, this is just example */
+                // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                console.log(result)
+            }
+        });
+    });
+</script>
+@endforeach
 @endpush

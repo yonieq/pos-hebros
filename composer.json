@@ -19,8 +19,10 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
+        "maatwebsite/excel": "^3.1",
         "midtrans/midtrans-php": "^2.5",
         "milon/barcode": "^8.0",
+        "realrashid/sweet-alert": "^4.1",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
