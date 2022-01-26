@@ -18,7 +18,8 @@
                 @empty(! session('id_pembelian'))
                 <a href="{{ route('pembelian_detail.index') }}" class="btn btn-info btn-xs btn-flat"><i class="fa fa-pencil"></i> Transaksi Aktif</a>
                 @endempty
-                <a href="https://wwww.google.com/" target="_blank" class="btn btn-success btn-xs btn-flat"><i class="fa fa-outdent"></i> Export CVS</a>
+                <a href="{{ route('exportExcel') }}" target="_blank" class="btn btn-success btn-xs btn-flat"><i class="fa fa-outdent"></i> Export Excel</a>
+                <a href="{{ route('exportCSV') }}" target="_blank" class="btn btn-success btn-xs btn-flat"><i class="fa fa-outdent"></i> Export CSV</a>
             </div>
             <div class="box-body table-responsive">
                 <table class="table table-stiped table-bordered table-pembelian">

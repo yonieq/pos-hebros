@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\BarangImport;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Supplier;
 use PDF;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BarangController extends Controller
 {
@@ -170,5 +172,19 @@ class BarangController extends Controller
         $pdf = PDF::loadView('barang.barcode', compact('databarang', 'no'));
         $pdf->setPaper('a4', 'potrait');
         return $pdf->stream('barang.pdf');
+    }
+
+    public function barangImport()
+    {
+        // Excel::import(new BarangImport, request()->file('file'));
+
+        return view('barang.import');
+    }
+
+    public function barangImportPost()
+    {
+        Excel::import(new BarangImport, request()->file('file'));
+
+        return view('barang.index');
     }
 }

@@ -113,7 +113,7 @@
                             <div class="form-group row">
                                 <label for="pajak" class="col-lg-2 control-label">Pajak</label>
                                 <div class="col-lg-8">
-                                    <input type="number" id="pajak" class="form-control" name="pajak" >
+                                    <input type="text" id="pajak" class="form-control" name="pajak" value="10%" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -237,13 +237,13 @@
             loadForm($(this).val());
         });
 
-        // $(document).on('input', '#pajak', function () {
-        //     if ($(this).val() == "") {
-        //         $(this).val(0).select();
-        //     }
+        $(document).on('input', '#pajak', function () {
+            if ($(this).val() == "") {
+                $(this).val(0).select();
+            }
 
-        //     loadForm($(this).val());
-        // });
+            loadForm($(this).val());
+        });
 
         $('#diterima').on('input', function () {
             if ($(this).val() == "") {

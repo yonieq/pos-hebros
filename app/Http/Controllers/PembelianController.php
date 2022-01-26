@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PembelianExport;
 use Illuminate\Http\Request;
 use App\Models\Pembelian;
 use App\Models\PembelianDetail;
 use App\Models\Barang;
 use App\Models\Supplier;
+use Excel;
 
 class PembelianController extends Controller
 {
@@ -131,5 +133,15 @@ class PembelianController extends Controller
         $pembelian->delete();
 
         return response(null, 204);
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new PembelianExport, 'pembelian.xlsx');
+    }
+
+    public function exportCSV()
+    {
+        return Excel::download(new PembelianExport, 'pembelian.csv');
     }
 }

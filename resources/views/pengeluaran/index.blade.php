@@ -15,7 +15,8 @@
         <div class="box">
             <div class="box-header with-border">
                 <button onclick="addForm('{{ route('pengeluaran.store') }}')" class="btn btn-primary btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Tambah</button>
-                <a href="{{ route('exportcsv') }}" target="_blank" class="btn btn-success btn-xs btn-flat"><i class="fa fa-outdent"></i> Export CVS</a>
+                <a href="{{ route('exportExcel') }}" target="_blank" class="btn btn-success btn-xs btn-flat"><i class="fa fa-outdent"></i> Export Excel</a>
+                <a href="{{ route('exportCSV') }}" target="_blank" class="btn btn-success btn-xs btn-flat"><i class="fa fa-outdent"></i> Export CSV</a>
             </div>
             <div class="box-body table-responsive">
                 <table class="table table-stiped table-bordered">

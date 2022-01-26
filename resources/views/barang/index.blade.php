@@ -18,7 +18,25 @@
                     <button onclick="addForm('{{ route('barang.store') }}')" class="btn btn-primary btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Tambah</button>
                     <button onclick="deleteSelected('{{ route('barang.delete_selected') }}')" class="btn btn-danger btn-xs btn-flat"><i class="fa fa-trash"></i> Hapus</button>
                     <button onclick="cetakBarcode('{{ route('barang.cetak_barcode') }}')" class="btn btn-info btn-xs btn-flat"><i class="fa fa-barcode"></i> Cetak Barcode</button>
-                    <button  class="btn btn-success btn-xs btn-flat"><i class="fa fa-indent"></i> Import CVS</button>
+                    <button onclick="exampleModal()" class="btn btn-success btn-xs btn-flat"><i class="fa fa-indent"></i>Import Data</button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Import CSV</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="import_barang" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="input-group mb-3">
+                                            <input type="file" name="file" class="form-control">
+                                            <button class="btn btn-primary" type="submit">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -113,6 +131,16 @@
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=nama_barang]').focus();
+    }
+
+    function exampleModal(url) {
+        $('#exampleModal').modal('show');
+        // $('#exampleModal .modal-title').text('Import Barang');
+
+        // $('#modal-import import')[0].reset();
+        // $('#modal-import import').attr('action', url);
+        // $('#modal-import [name=_method]').val('post');
+        // $('#modal-import [name=nama_barang]').focus();
     }
 
     function editForm(url) {

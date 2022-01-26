@@ -16,7 +16,9 @@ use App\Http\Controllers\{
     SupplierController,
     UserController,
 };
+use App\Imports\BarangImport;
 use Illuminate\Support\Facades\Route;
+use Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('login');
 });
+// Route::get('/barang/import', [BarangController::class, 'barangImport'])->name('barangImport');
+// Route::post('/barang/importPost', [BarangController::class, 'barangImportPost'])->name('barangImportPost');
+Route::post('import_barang', function () {
+    Excel::import(new BarangImport, request()->file('file'));
+    return redirect()->back()->with('success','Data Imported Successfully');
+});
+
+Route::get('/pengeluaran/export-excel', [PengeluaranController::class, 'exportExcel'])->name('exportExcel');
+Route::get('/pengeluaran/export-csv', [PengeluaranController::class, 'exportCSV'])->name('exportCSV');
+
+Route::get('/pembelian/export-excel', [PembelianController::class, 'exportExcel'])->name('exportExcel');
+Route::get('/pembelian/export-csv', [PembelianController::class, 'exportCSV'])->name('exportCSV');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -54,8 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/pengeluaran/data', [PengeluaranController::class, 'data'])->name('pengeluaran.data');
         Route::resource('/pengeluaran', PengeluaranController::class);
-        Route::get('/pengeluaran/export-excel', [PengeluaranController::class, 'exportExcel']);
-        Route::get('/pengeluaran/export-csv', [PengeluaranController::class, 'exportCSV'])->name('exportcsv');
+        // Route::get('/pengeluaran/export-excel', [PengeluaranController::class, 'exportExcel']);
 
         Route::get('/pembelian/data', [PembelianController::class, 'data'])->name('pembelian.data');
         Route::get('/pembelian/{id}/create', [PembelianController::class, 'create'])->name('pembelian.create');
