@@ -9,3 +9,9 @@ Poin poin POS
 - (done) Ganti nama produk menjadi barang
 - (done) Penambahan new field pada tambah produk (Serial Number, Merk, Garansi, Keterangan)
 - (done) Penambahan faktur, status pembayaran tunai dan midtrans
+
+revisi :
+1. permision gudang
+2. dashboard gudang
+3. rapihin laporan
+4. perbanyak tampilan menu dashboard

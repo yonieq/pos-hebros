@@ -16,9 +16,9 @@ use App\Http\Controllers\{
     SupplierController,
     UserController,
 };
+// use Excel;
 use App\Imports\BarangImport;
 use Illuminate\Support\Facades\Route;
-use Excel;
 
 /*
 |--------------------------------------------------------------------------
