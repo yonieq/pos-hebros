@@ -43,8 +43,10 @@ class DashboardController extends Controller
 
         if (auth()->user()->level == 1) {
             return view('admin.dashboard', compact('kategori', 'barang', 'supplier', 'pelanggan', 'tanggal_awal', 'tanggal_akhir', 'data_tanggal', 'data_pendapatan'));
+        } if (auth()->user()->level == 2) {
+            return view('kasir.dashboard', compact('kategori', 'barang', 'supplier', 'pelanggan', 'tanggal_awal', 'tanggal_akhir', 'data_tanggal', 'data_pendapatan'));
         } else {
-            return view('kasir.dashboard');
+            return view('gudang.dashboard', compact('kategori', 'barang', 'supplier', 'pelanggan', 'tanggal_awal', 'tanggal_akhir', 'data_tanggal', 'data_pendapatan'));
         }
     }
 }

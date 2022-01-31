@@ -51,20 +51,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::group(['middleware' => 'level:1'], function () {
-        Route::get('/kategori/data', [KategoriController::class, 'data'])->name('kategori.data');
-        Route::resource('/kategori', KategoriController::class);
+        // Route::get('/kategori/data', [KategoriController::class, 'data'])->name('kategori.data');
+        // Route::resource('/kategori', KategoriController::class);
 
-        Route::get('/barang/data', [BarangController::class, 'data'])->name('barang.data');
-        Route::post('/barang/delete-selected', [BarangController::class, 'deleteSelected'])->name('barang.delete_selected');
-        Route::post('/barang/cetak-barcode', [BarangController::class, 'cetakBarcode'])->name('barang.cetak_barcode');
-        Route::resource('/barang', BarangController::class);
+        // Route::get('/barang/data', [BarangController::class, 'data'])->name('barang.data');
+        // Route::post('/barang/delete-selected', [BarangController::class, 'deleteSelected'])->name('barang.delete_selected');
+        // Route::post('/barang/cetak-barcode', [BarangController::class, 'cetakBarcode'])->name('barang.cetak_barcode');
+        // Route::resource('/barang', BarangController::class);
 
         Route::get('/pelanggan/data', [PelangganController::class, 'data'])->name('pelanggan.data');
         Route::post('/pelanggan/cetak-pelanggan', [PelangganController::class, 'cetakPelanggan'])->name('pelanggan.cetak_pelanggan');
         Route::resource('/pelanggan', PelangganController::class);
 
-        Route::get('/supplier/data', [SupplierController::class, 'data'])->name('supplier.data');
-        Route::resource('/supplier', SupplierController::class);
+        // Route::get('/supplier/data', [SupplierController::class, 'data'])->name('supplier.data');
+        // Route::resource('/supplier', SupplierController::class);
 
         Route::get('/pengeluaran/data', [PengeluaranController::class, 'data'])->name('pengeluaran.data');
         Route::resource('/pengeluaran', PengeluaranController::class);
@@ -99,6 +99,19 @@ Route::group(['middleware' => 'auth'], function () {
             ->except('create', 'show', 'edit');
     });
 
+    Route::group(['middleware' => 'level:1,3'], function () {
+        Route::get('/supplier/data', [SupplierController::class, 'data'])->name('supplier.data');
+        Route::resource('/supplier', SupplierController::class);
+
+        Route::get('/barang/data', [BarangController::class, 'data'])->name('barang.data');
+        Route::post('/barang/delete-selected', [BarangController::class, 'deleteSelected'])->name('barang.delete_selected');
+        Route::post('/barang/cetak-barcode', [BarangController::class, 'cetakBarcode'])->name('barang.cetak_barcode');
+        Route::resource('/barang', BarangController::class);
+
+        Route::get('/kategori/data', [KategoriController::class, 'data'])->name('kategori.data');
+        Route::resource('/kategori', KategoriController::class);
+    });
+
     Route::group(['middleware' => 'level:1'], function () {
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
         Route::get('/laporan/data/{awal}/{akhir}', [LaporanController::class, 'data'])->name('laporan.data');
@@ -112,7 +125,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');
     });
  
-    Route::group(['middleware' => 'level:1,2'], function () {
+    Route::group(['middleware' => 'level:1,2,3'], function () {
         Route::get('/profil', [UserController::class, 'profil'])->name('user.profil');
         Route::post('/profil', [UserController::class, 'updateProfil'])->name('user.update_profil');
     });

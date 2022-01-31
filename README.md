@@ -11,7 +11,6 @@ Poin poin POS
 - (done) Penambahan faktur, status pembayaran tunai dan midtrans
 
 revisi :
-1. permision gudang
-2. dashboard gudang
-3. rapihin laporan
-4. perbanyak tampilan menu dashboard
+1. permision gudang (done)
+2. dashboard gudang (done)
+3. rapihin laporan (done)

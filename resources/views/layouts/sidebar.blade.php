@@ -87,7 +87,7 @@
                     <i class="fa fa-cogs"></i> <span>Pengaturan</span>
                 </a>
             </li>
-            @else
+            @elseif (auth()->user()->level == 2)
             <li>
                 <a href="{{ route('transaksi.index') }}">
                     <i class="fa fa-cart-arrow-down"></i> <span>Transaksi Aktif</span>
@@ -96,6 +96,23 @@
             <li>
                 <a href="{{ route('transaksi.baru') }}">
                     <i class="fa fa-cart-arrow-down"></i> <span>Transaksi Baru</span>
+                </a>
+            </li>
+            @else
+            <li class="header">MASTER</li>
+            <li>
+                <a href="{{ route('kategori.index') }}">
+                    <i class="fa fa-cube"></i> <span>Kategori</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('barang.index') }}">
+                    <i class="fa fa-cubes"></i> <span>Barang</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('supplier.index') }}">
+                    <i class="fa fa-truck"></i> <span>Supplier</span>
                 </a>
             </li>
             @endif
